@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const reqBody = await request.json();
-  console.log(reqBody);
   try {
     await connectDB();
     await ReviewModel.create(reqBody);

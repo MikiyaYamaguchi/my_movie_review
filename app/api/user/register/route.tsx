@@ -1,5 +1,14 @@
-import { NextResponse } from "next/server";
+import connectDB from "@/app/utils/database";
+import { UserModel } from "@/app/utils/schemaModels";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-  return NextResponse.json({ message: "会員登録" });
+export async function POST(request: NextRequest) {
+  const reqBody = await request.json();
+  try {
+    await connectDB();
+    await UserModel.create(reqBody);
+    return NextResponse.json({ message: "会員登録成功" });
+  } catch {
+    return NextResponse.json({ message: "会員登録失敗" });
+  }
 }
