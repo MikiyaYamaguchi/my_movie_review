@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const savedUserData = await UserModel.findOne({ email: reqBody.email });
     if (savedUserData) {
       if (reqBody.password === savedUserData.password) {
-        const secretKey = new TextEncoder().encode("my-moview-review-app-book");
+        const secretKey = new TextEncoder().encode("my-movie-review-app-book");
         const payload = {
           email: reqBody.email,
         };
