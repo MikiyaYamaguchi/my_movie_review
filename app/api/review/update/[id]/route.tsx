@@ -10,8 +10,13 @@ export async function PUT(
   try {
     await connectDB;
     const { id } = await context.params;
-    await ReviewModel.updateOne({ _id: id }, reqBody);
-    return NextResponse.json({ message: "レビュー更新成功" });
+    const singleReview = await ReviewModel.findById(id);
+    if (singleReview.email === reqBody.email) {
+      await ReviewModel.updateOne({ _id: id }, reqBody);
+      return NextResponse.json({ message: "レビュー更新成功" });
+    } else {
+      return NextResponse.json({ message: "他の人が投稿したレビューです" });
+    }
   } catch {
     return NextResponse.json({ message: "レビュー更新失敗" });
   }
