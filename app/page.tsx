@@ -31,7 +31,7 @@ const Home = async () => {
     const date = format(new Date(review.date), "yyyy.M.d");
     return (
       <div key={review._id}>
-        <Link href="">
+        <Link href={`/review/single/${review._id}`}>
           <div
             style={{
               position: "relative",

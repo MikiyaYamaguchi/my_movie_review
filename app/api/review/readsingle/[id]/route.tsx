@@ -9,10 +9,10 @@ export async function GET(
   try {
     await connectDB();
     const { id } = await context.params;
-    const singleRevew = await ReviewModel.findById(id);
+    const singleReview = await ReviewModel.findById(id);
     return NextResponse.json({
       message: "レビュー読み取り成功（シングル）",
-      singleRevew: singleRevew,
+      singleReview: singleReview,
     });
   } catch {
     return NextResponse.json({ message: "レビュー読み取り失敗（シングル）" });
