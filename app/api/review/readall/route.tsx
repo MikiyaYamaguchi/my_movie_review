@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     await connectDB();
-    const allRevews = await ReviewModel.find();
+    const allReviews = await ReviewModel.find();
     return NextResponse.json({
       message: "レビュー読み取り成功(オール)",
-      allRevews: allRevews,
+      allReviews: allReviews,
     });
   } catch {
     return NextResponse.json({ message: "レビュー読み取り失敗(オール)" });
