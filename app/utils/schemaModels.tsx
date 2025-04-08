@@ -9,6 +9,7 @@ const ReviewSchema = new Schema({
   image: String,
   star: Number,
   thoughts: String,
+  email: String,
 });
 
 const UserSchema = new Schema({
