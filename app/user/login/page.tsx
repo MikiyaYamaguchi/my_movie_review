@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
 interface User {
@@ -8,6 +9,7 @@ interface User {
 
 const Login = () => {
   const [user, setUser] = useState<User>({ email: "", password: "" });
+  const router = useRouter();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
@@ -26,8 +28,15 @@ const Login = () => {
         body: JSON.stringify(user),
       });
       const jsonData = await response.json();
-      localStorage.setItem("token", jsonData.token);
-      alert(jsonData.message);
+      if (jsonData.status === 200) {
+        localStorage.setItem("token", jsonData.token);
+        localStorage.setItem("email", user.email);
+        alert(jsonData.message);
+        router.push("/user/myPage");
+        router.refresh();
+      } else {
+        alert(jsonData.message);
+      }
     } catch {
       alert("ログイン失敗");
     }

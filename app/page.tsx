@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { getAllReviews } from "./lib/review";
 
 interface Review {
   _id: string;
@@ -11,15 +12,6 @@ interface Review {
   star: number;
   thoughts: string;
 }
-
-const getAllReviews = async () => {
-  const response = await fetch("http://localhost:3000/api/review/readall", {
-    cache: "no-store",
-  });
-  const jsonData = await response.json();
-  const allReviews = jsonData.allReviews;
-  return allReviews;
-};
 
 const Home = async () => {
   const allReviews = await getAllReviews();

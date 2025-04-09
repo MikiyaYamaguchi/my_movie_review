@@ -1,19 +1,10 @@
+import { getSingleReview } from "@/app/lib/review";
 import { format } from "date-fns";
 import Image from "next/image";
 
-const getSingleItem = async (id: string) => {
-  const response = await fetch(
-    `http://localhost:3000/api/review/readsingle/${id}`,
-    { cache: "no-cache" }
-  );
-  const jsonData = await response.json();
-  const singleReview = jsonData.singleReview;
-  return singleReview;
-};
-
 const Review = async (context: { params: Promise<{ id: string }> }) => {
   const { id } = await context.params;
-  const singleReview = await getSingleItem(id);
+  const singleReview = await getSingleReview(id);
 
   let starReview = "";
   for (let i = 0; i < Number(singleReview.star); i++) {
