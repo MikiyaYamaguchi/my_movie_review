@@ -29,3 +29,24 @@ export const getReviewByEmail = async (email: string) => {
   const reviews = jsonData.reviews;
   return reviews;
 };
+
+//レビューを削除
+export const deleteReview = async(id: string) => {
+	try {
+		const response = await fetch(`http://localhost:3000/api/review/delete/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+			body: JSON.stringify({
+				email: "mikiyagreeeen@gmail.com"
+			})
+		})
+		const jsonData = await response.json();
+		alert(jsonData.message)
+	} catch {
+		alert("アイテム削除失敗")
+	}
+}

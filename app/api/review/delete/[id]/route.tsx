@@ -6,9 +6,9 @@ export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  const reqBody = request.json();
   try {
     await conntectDB();
+    const reqBody = await request.json();
     const { id } = await context.params;
     const singleReview = await ReviewModel.findById(id);
     if (singleReview.email === reqBody.email) {

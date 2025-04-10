@@ -115,7 +115,7 @@ const Post = () => {
               </td>
             </tr>
             <tr>
-              <th>ポスター画像</th>
+              <th>感想</th>
               <td>
                 <textarea
                   name="thoughts"

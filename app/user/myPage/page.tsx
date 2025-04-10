@@ -1,10 +1,11 @@
 "use client";
 
-import { getReviewByEmail } from "@/app/lib/review";
+import { deleteReview, getReviewByEmail } from "@/app/lib/review";
 import { getUser } from "@/app/lib/user";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface User {
@@ -25,6 +26,7 @@ interface Review {
 const MyPage = () => {
   const [user, setUser] = useState<User>({ name: "", email: "" });
   const [reviews, setReviews] = useState<Review[]>([]);
+  const router = useRouter();
   const getUserInfo = async () => {
     const email = localStorage.getItem("email");
     if (!email) {
@@ -48,6 +50,12 @@ const MyPage = () => {
     getUserInfo();
     getReviews();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    await deleteReview(id);
+    router.refresh();
+    location.reload();
+  };
 
   const listReviews = reviews.map((review: Review) => {
     let starReview = "";
@@ -79,6 +87,7 @@ const MyPage = () => {
           <p>{review.thoughts}</p>
         </Link>
         <Link href={`/review/update/${review._id}`}>編集する</Link>
+        <button onClick={() => handleDelete(review._id)}>削除する</button>
       </div>
     );
   });
