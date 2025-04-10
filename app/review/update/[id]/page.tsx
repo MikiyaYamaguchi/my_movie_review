@@ -1,6 +1,7 @@
 "use client";
 
 import { getSingleReview } from "@/app/lib/review";
+import useAuth from "@/app/utils/useAuth";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -13,8 +14,10 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
   const [image, setImage] = useState("");
   const [star, setStar] = useState(1);
   const [thoughts, setThoughts] = useState("");
+  const [email, setEmail] = useState("");
 
   const router = useRouter();
+  const loginUserEmail = useAuth();
 
   useEffect(() => {
     const getTargetReview = async () => {
@@ -26,6 +29,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       setImage(singleReview.image);
       setStar(singleReview.star);
       setThoughts(singleReview.thoughts);
+      setEmail(singleReview.email);
     };
     getTargetReview();
   }, []);
@@ -56,7 +60,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
             image: image,
             star: star,
             thoughts: thoughts,
-            email: "ダミーデータ",
+            email: loginUserEmail,
           }),
         }
       );
@@ -68,90 +72,92 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       alert("レビュー更新失敗");
     }
   };
-  return (
-    <div>
-      <h1>レビュー更新</h1>
-      <form onSubmit={handleSubmit}>
-        <table>
-          <tbody>
-            <tr>
-              <th>タイトル</th>
-              <td>
-                <input
-                  type="text"
-                  name="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>公開日</th>
-              <td>
-                <DatePicker
-                  selected={date}
-                  onChange={handleDateChange}
-                  dateFormat="yyyy/MM/dd"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>ジャンル</th>
-              <td>
-                <input
-                  type="text"
-                  name="genre"
-                  value={genre}
-                  onChange={(e) => setGenre(e.target.value)}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>ポスター画像</th>
-              <td>
-                <input
-                  type="text"
-                  name="image"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>星レビュー</th>
-              <td>
-                <input
-                  type="number"
-                  name="star"
-                  max="5"
-                  min="1"
-                  value={star}
-                  onChange={(e) => setStar(Number(e.target.value))}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>感想</th>
-              <td>
-                <textarea
-                  name="thoughts"
-                  id="thoughts"
-                  value={thoughts}
-                  onChange={(e) => setThoughts(e.target.value)}
-                  required
-                ></textarea>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button>更新</button>
-      </form>
-    </div>
-  );
+  if (loginUserEmail === email) {
+    return (
+      <div>
+        <h1>レビュー更新</h1>
+        <form onSubmit={handleSubmit}>
+          <table>
+            <tbody>
+              <tr>
+                <th>タイトル</th>
+                <td>
+                  <input
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>公開日</th>
+                <td>
+                  <DatePicker
+                    selected={date}
+                    onChange={handleDateChange}
+                    dateFormat="yyyy/MM/dd"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td>
+                  <input
+                    type="text"
+                    name="genre"
+                    value={genre}
+                    onChange={(e) => setGenre(e.target.value)}
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>ポスター画像</th>
+                <td>
+                  <input
+                    type="text"
+                    name="image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>星レビュー</th>
+                <td>
+                  <input
+                    type="number"
+                    name="star"
+                    max="5"
+                    min="1"
+                    value={star}
+                    onChange={(e) => setStar(Number(e.target.value))}
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>感想</th>
+                <td>
+                  <textarea
+                    name="thoughts"
+                    id="thoughts"
+                    value={thoughts}
+                    onChange={(e) => setThoughts(e.target.value)}
+                    required
+                  ></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button>更新</button>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default Update;

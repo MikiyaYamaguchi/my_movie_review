@@ -2,6 +2,7 @@
 
 import { deleteReview, getReviewByEmail } from "@/app/lib/review";
 import { getUser } from "@/app/lib/user";
+import useAuth from "@/app/utils/useAuth";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,6 +28,8 @@ const MyPage = () => {
   const [user, setUser] = useState<User>({ name: "", email: "" });
   const [reviews, setReviews] = useState<Review[]>([]);
   const router = useRouter();
+  const loginUserEmail = useAuth();
+
   const getUserInfo = async () => {
     const email = localStorage.getItem("email");
     if (!email) {
@@ -52,7 +55,7 @@ const MyPage = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    await deleteReview(id);
+    await deleteReview(id, loginUserEmail);
     router.refresh();
     location.reload();
   };
@@ -91,30 +94,32 @@ const MyPage = () => {
       </div>
     );
   });
-  return (
-    <div>
-      <h1>マイページ</h1>
+  if (loginUserEmail === user.email) {
+    return (
       <div>
-        <h2>ユーザー情報</h2>
-        <table>
-          <tbody>
-            <tr>
-              <th>ユーザー名</th>
-              <td>{user.name}</td>
-            </tr>
-            <tr>
-              <th>メールアドレス</th>
-              <td>{user.email}</td>
-            </tr>
-          </tbody>
-        </table>
+        <h1>マイページ</h1>
+        <div>
+          <h2>ユーザー情報</h2>
+          <table>
+            <tbody>
+              <tr>
+                <th>ユーザー名</th>
+                <td>{user.name}</td>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <td>{user.email}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h2>投稿レビュー</h2>
+          {listReviews}
+        </div>
       </div>
-      <div>
-        <h2>投稿レビュー</h2>
-        {listReviews}
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MyPage;

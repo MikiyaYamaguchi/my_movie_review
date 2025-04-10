@@ -31,7 +31,7 @@ export const getReviewByEmail = async (email: string) => {
 };
 
 //レビューを削除
-export const deleteReview = async(id: string) => {
+export const deleteReview = async(id: string, email: string) => {
 	try {
 		const response = await fetch(`http://localhost:3000/api/review/delete/${id}`, {
 			method: "DELETE",
@@ -41,7 +41,7 @@ export const deleteReview = async(id: string) => {
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 			body: JSON.stringify({
-				email: "mikiyagreeeen@gmail.com"
+				email: email
 			})
 		})
 		const jsonData = await response.json();
