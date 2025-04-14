@@ -9,13 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
+    "@emotion/react": "^11.14.0",
     "date-fns": "^4.1.0",
     "jose": "^6.0.10",
     "mongoose": "^8.13.1",
     "next": "15.2.4",
+    "node": "^23.11.0",
     "react": "^19.0.0",
     "react-datepicker": "^8.2.1",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sass": "^1.86.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

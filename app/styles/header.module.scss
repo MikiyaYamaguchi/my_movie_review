@@ -1,0 +1,67 @@
+.header {
+  background: var(--main-color);
+  color: var(--text-color-reversal);
+  padding: 1em 1.5em;
+  a {
+    color: var(--text-color-reversal);
+  }
+  h1 {
+    font-size: 28px;
+    @media screen and (max-width: 767px) {
+      font-size: 22px;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: 399px) {
+      font-size: 16px;
+    }
+    a {
+      position: relative;
+      text-decoration: none;
+      padding-left: 45px;
+      display: block;
+      &:before {
+        content: "";
+        background: url("/logo_icon.svg") no-repeat center/contain;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      @media screen and (max-width: 500px) {
+        padding-left: 35px;
+        &:before {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      @media screen and (max-width: 399px) {
+        padding-left: 30px;
+        &:before {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gnav {
+  a {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 7px;
+    }
+  }
+}
