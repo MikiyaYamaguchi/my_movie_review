@@ -1,7 +1,9 @@
+import footer from "../styles/footer.module.scss";
+
 const Footer = () => {
   return (
-    <footer>
-      <p>フッター</p>
+    <footer className={footer.footer}>
+      <p>Copyright © My Movie Review All Rights Reserved.</p>
     </footer>
   );
 };
