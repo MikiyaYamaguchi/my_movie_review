@@ -1,6 +1,4 @@
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
+import Card from "@/app/components/card";
 import { getAllReviews } from "./lib/review";
 
 interface Review {
@@ -16,38 +14,14 @@ interface Review {
 const Home = async () => {
   const allReviews = await getAllReviews();
   const listReviews = allReviews.map((review: Review) => {
-    let starReview = "";
-    for (let i = 0; i < Number(review.star); i++) {
-      starReview += "★";
-    }
-    const date = format(new Date(review.date), "yyyy.M.d");
-    return (
-      <div key={review._id}>
-        <Link href={`/review/single/${review._id}`}>
-          <div
-            style={{
-              position: "relative",
-              maxWidth: "300px",
-              paddingTop: "30%",
-            }}
-          >
-            <Image
-              src={review.image}
-              fill
-              style={{ objectFit: "contain" }}
-              alt={review.title}
-            />
-          </div>
-          <p>{review.title}</p>
-          <p>{date}</p>
-          <p>{starReview}</p>
-          <p>{review.genre}</p>
-          <p>{review.thoughts}</p>
-        </Link>
-      </div>
-    );
+    return <Card review={review} key={review._id} />;
   });
-  return <div>{listReviews}</div>;
+  return (
+    <>
+      <h2>新着レビュー</h2>
+      <div className="row sp-col-2">{listReviews}</div>
+    </>
+  );
 };
 
 export default Home;

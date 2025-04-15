@@ -22,7 +22,7 @@ p {
 }
 
 p {
-  margin: 0.5em 1em;
+  margin: 0.5em 0 1em;
   line-height: 1.8;
   letter-spacing: 0.08em;
   &:last-child {
@@ -35,15 +35,26 @@ p {
 
 a {
   text-decoration: none;
+  color: var(--main-color);
   &:hover {
     text-decoration: underline;
+    color: var(--main-color);
+  }
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 1em;
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
   }
 }
 
 .row {
   @media (min-width: 768px) {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     letter-spacing: -0.4em;
     .col {
       letter-spacing: normal;
@@ -51,6 +62,7 @@ a {
       display: inline-block;
       float: none;
       margin-bottom: 4%;
+      padding: 0 0.5%;
       &.span_1 {
         width: 6.5%;
         &:nth-child(12n + 1) {
@@ -106,5 +118,28 @@ a {
         width: 100%;
       }
     }
+  }
+  @media screen and (max-width: 767px) {
+    &.sp-col-2 {
+      display: flex;
+      flex-wrap: wrap;
+      > .col {
+        width: 48%;
+        padding: 0 1%;
+        margin-bottom: 4%;
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  @media screen and (max-width: 1220px) {
+    padding: 0 10px;
   }
 }

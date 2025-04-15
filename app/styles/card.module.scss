@@ -1,0 +1,91 @@
+.card {
+  text-decoration: none !important;
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+  opacity: 1;
+  transition: 0.2s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.imgWrap {
+  position: relative;
+  padding-top: 140%;
+  margin-bottom: 0.5em;
+  img {
+    object-fit: cover;
+    margin: auto;
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.date {
+  margin: 0;
+  color: #a9a9a9;
+  font-size: 12px;
+  @media screen and (max-width: 767px) {
+    font-size: 10px;
+  }
+}
+
+.star {
+  margin: 0;
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.genre {
+  margin: 0;
+  margin-bottom: 0.4em;
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0 0.3em;
+    margin-right: 3px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: normal;
+    margin-bottom: 3px;
+  }
+}
+
+.thoughts {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin: 0;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
+}
+
+.updateBtn {
+  line-height: normal;
+  font-size: 13px;
+}
+
+.deleteBtn {
+  color: var(--accent-color);
+  background: none;
+  border: none;
+  line-height: normal;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

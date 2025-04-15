@@ -2,6 +2,7 @@
 
 import { deleteReview, getReviewByEmail } from "@/app/lib/review";
 import { getUser } from "@/app/lib/user";
+import card from "@/app/styles/card.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -65,32 +66,33 @@ const MyPage = () => {
     for (let i = 0; i < Number(review.star); i++) {
       starReview += "★";
     }
+    const genreArray = review.genre.split(",");
     const date = format(new Date(review.date), "yyyy.M.d");
     return (
-      <div key={review._id}>
-        <Link href={`/review/single/${review._id}`}>
-          <div
-            style={{
-              position: "relative",
-              maxWidth: "300px",
-              paddingTop: "30%",
-            }}
-          >
-            <Image
-              src={review.image}
-              fill
-              style={{ objectFit: "contain" }}
-              alt={review.title}
-            />
+      <div key={review._id} className="col span_2">
+        <Link href={`/review/single/${review._id}`} className={card.card}>
+          <div className={card.imgWrap}>
+            <Image src={review.image} fill alt={review.title} />
           </div>
-          <p>{review.title}</p>
-          <p>{date}</p>
-          <p>{starReview}</p>
-          <p>{review.genre}</p>
-          <p>{review.thoughts}</p>
+          <p className={card.title}>{review.title}</p>
+          <p className={card.date}>{date}</p>
+          <p className={card.star}>{starReview}</p>
+          <p className={card.genre}>
+            {genreArray.map((genre, index) => (
+              <span key={index}>{genre}</span>
+            ))}
+          </p>
+          <p className={card.thoughts}>{review.thoughts}</p>
         </Link>
-        <Link href={`/review/update/${review._id}`}>編集する</Link>
-        <button onClick={() => handleDelete(review._id)}>削除する</button>
+        <Link href={`/review/update/${review._id}`} className={card.updateBtn}>
+          編集する
+        </Link>
+        <button
+          onClick={() => handleDelete(review._id)}
+          className={card.deleteBtn}
+        >
+          削除する
+        </button>
       </div>
     );
   });
@@ -115,7 +117,7 @@ const MyPage = () => {
         </div>
         <div>
           <h2>投稿レビュー</h2>
-          {listReviews}
+          <div className="row sp-col-2">{listReviews}</div>
         </div>
       </div>
     );
