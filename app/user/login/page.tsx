@@ -1,4 +1,5 @@
 "use client";
+import login from "@/app/styles/login.module.scss";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
@@ -56,6 +57,7 @@ const Login = () => {
                   value={user.email}
                   onChange={handleChange}
                   placeholder="xxx@xxx.com"
+                  className={login.input}
                   required
                 />
               </td>
@@ -68,13 +70,14 @@ const Login = () => {
                   name="password"
                   value={user.password}
                   onChange={handleChange}
+                  className={login.input}
                   required
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <button>ログイン</button>
+        <button className={login.submit}>ログイン</button>
       </form>
     </div>
   );
