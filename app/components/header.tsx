@@ -2,6 +2,7 @@
 
 import useAuth from "@/app/utils/useAuth";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import header from "../styles/header.module.scss";
 import {
   MaterialSymbolsContactPageRounded,
@@ -10,12 +11,20 @@ import {
 
 const Header = () => {
   const loginUserEmail = useAuth();
+  const path = usePathname();
+  const isTop = path === "/";
   return (
     <header className={header.header}>
       <div className={header.inner}>
-        <h1>
-          <Link href="/">My Moview Review</Link>
-        </h1>
+        {isTop ? (
+          <h1 className={header.title}>
+            <Link href="/">My Moview Review</Link>
+          </h1>
+        ) : (
+          <div className={header.title}>
+            <Link href="/">My Moview Review</Link>
+          </div>
+        )}
         <div className={header.gnav}>
           {loginUserEmail ? (
             <Link href="/user/myPage">

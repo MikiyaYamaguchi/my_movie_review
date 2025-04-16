@@ -42,6 +42,16 @@ a {
   }
 }
 
+h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+  @media screen and (max-width: 767px) {
+    font-size: 22px;
+  }
+}
+
 h2 {
   font-size: 26px;
   font-weight: bold;
@@ -136,10 +146,47 @@ h2 {
   }
 }
 
+section {
+  &:not(:last-child) {
+    margin-bottom: 7%;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 10%;
+    }
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   @media screen and (max-width: 1220px) {
     padding: 0 10px;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 0;
+  tr {
+    th,
+    td {
+      border: 1px solid #999;
+      border-left: none;
+      border-right: none;
+      padding: 1em;
+      @media screen and (max-width: 767px) {
+        padding: 0.4em;
+      }
+    }
+    th {
+      background: #efefef;
+      color: #000;
+      text-align: left;
+      width: 30%;
+      @media screen and (max-width: 767px) {
+        width: 35%;
+      }
+    }
   }
 }

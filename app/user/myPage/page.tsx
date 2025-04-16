@@ -100,7 +100,7 @@ const MyPage = () => {
     return (
       <div>
         <h1>マイページ</h1>
-        <div>
+        <section>
           <h2>ユーザー情報</h2>
           <table>
             <tbody>
@@ -114,11 +114,17 @@ const MyPage = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div>
+        </section>
+        <section>
           <h2>投稿レビュー</h2>
-          <div className="row sp-col-2">{listReviews}</div>
-        </div>
+          <div className="row">
+            {reviews.length > 0 ? (
+              listReviews
+            ) : (
+              <p>投稿した記事がありません。</p>
+            )}
+          </div>
+        </section>
       </div>
     );
   }
