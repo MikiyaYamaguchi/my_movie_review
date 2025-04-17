@@ -1,0 +1,74 @@
+.movieInfo {
+  margin-bottom: 4%;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    > * {
+      &:not(:first-child) {
+        margin-left: 2%;
+      }
+      @media screen and (min-width: 768px) {
+        &:first-child {
+          width: 25%;
+        }
+        &:last-child {
+          width: 73%;
+        }
+      }
+    }
+  }
+}
+
+.img {
+  img {
+    object-fit: contain;
+    position: relative !important;
+    width: 100% !important;
+    height: auto;
+  }
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
+  }
+}
+
+.date {
+  font-size: 16px;
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
+}
+
+.genre {
+  span {
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.2em 0.6em;
+    margin-right: 3px;
+    border-radius: 3px;
+    line-height: normal;
+    margin-bottom: 3px;
+    font-size: 16px;
+  }
+  @media screen and (max-width: 767px) {
+    span {
+      font-size: 15px;
+    }
+  }
+}
+
+.star {
+  font-size: 24px;
+  color: #ffd700;
+}
+
+.thoughts {
+  font-size: 16px;
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
+}

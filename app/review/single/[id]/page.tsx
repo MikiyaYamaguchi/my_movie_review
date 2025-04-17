@@ -1,4 +1,5 @@
 import { getSingleReview } from "@/app/lib/review";
+import single from "@/app/styles/single.module.scss";
 import { format } from "date-fns";
 import Image from "next/image";
 
@@ -11,28 +12,31 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
     starReview += "★";
   }
   const date = format(new Date(singleReview.date), "yyyy.M.d");
+  const genreArray = singleReview.genre.split(",");
   return (
     <div>
-      <div
-        style={{
-          position: "relative",
-          maxWidth: "300px",
-          paddingTop: "30%",
-        }}
-      >
-        <Image
-          src={singleReview.image}
-          fill
-          style={{ objectFit: "contain" }}
-          alt={singleReview.title}
-        />
-      </div>
-      <div>
-        <h2>{singleReview.title}</h2>
-        <p>{date}</p>
-        <p>{starReview}</p>
-        <p>{singleReview.genre}</p>
-        <p>{singleReview.thoughts}</p>
+      <div className={single.movieInfo}>
+        <div className={single.img}>
+          <Image
+            src={singleReview.image}
+            fill
+            style={{ objectFit: "contain" }}
+            alt={singleReview.title}
+          />
+        </div>
+        <div>
+          <p className={single.title}>{singleReview.title}</p>
+          <p className={single.date}>公開日：{date}</p>
+          <p className={single.genre}>
+            ジャンル：
+            {genreArray.map((genre: string, index: number) => (
+              <span key={index}>{genre}</span>
+            ))}
+          </p>
+          <p className={single.star}>{starReview}</p>
+          <h3>感想</h3>
+          <p className={single.thoughts}>{singleReview.thoughts}</p>
+        </div>
       </div>
     </div>
   );
