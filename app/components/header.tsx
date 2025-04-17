@@ -1,6 +1,6 @@
 "use client";
 
-import useAuth from "@/app/utils/useAuth";
+import useAuth from "@/app/utils/useAuthHeader";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import header from "../styles/header.module.scss";
@@ -11,7 +11,7 @@ import {
 } from "./icons";
 
 const Header = () => {
-  const loginUserEmail = useAuth();
+  const { isAuthenticated } = useAuth();
   const path = usePathname();
   const isTop = path === "/";
   return (
@@ -27,7 +27,7 @@ const Header = () => {
           </div>
         )}
         <div className={header.gnav}>
-          {loginUserEmail ? (
+          {isAuthenticated ? (
             <>
               <Link href="/user/myPage">
                 <MaterialSymbolsContactPageRounded />
