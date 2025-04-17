@@ -1,5 +1,6 @@
 "use client";
 
+import register from "@/app/styles/register.module.scss";
 import React, { ChangeEvent, useState } from "react";
 
 interface NewUser {
@@ -45,7 +46,7 @@ const Register = () => {
           <tbody>
             <tr>
               <th>
-                名前<span>必須</span>
+                名前<span className={register.required}>必須</span>
               </th>
               <td>
                 <input
@@ -54,13 +55,14 @@ const Register = () => {
                   value={newUser.name}
                   onChange={handleChange}
                   placeholder="山田　太郎"
+                  className={register.input}
                   required
                 />
               </td>
             </tr>
             <tr>
               <th>
-                メールアドレス<span>必須</span>
+                メールアドレス<span className={register.required}>必須</span>
               </th>
               <td>
                 <input
@@ -69,13 +71,14 @@ const Register = () => {
                   value={newUser.email}
                   onChange={handleChange}
                   placeholder="xxx@xxx.com"
+                  className={register.input}
                   required
                 />
               </td>
             </tr>
             <tr>
               <th>
-                パスワード<span>必須</span>
+                パスワード<span className={register.required}>必須</span>
               </th>
               <td>
                 <input
@@ -84,13 +87,14 @@ const Register = () => {
                   value={newUser.password}
                   onChange={handleChange}
                   placeholder=""
+                  className={register.input}
                   required
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <button>登録</button>
+        <button className={register.submit}>登録</button>
       </form>
     </div>
   );
