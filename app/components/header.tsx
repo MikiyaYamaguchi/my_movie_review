@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import header from "../styles/header.module.scss";
 import {
   MaterialSymbolsContactPageRounded,
+  MaterialSymbolsEditSquareOutlineRounded,
   MaterialSymbolsLogin,
 } from "./icons";
 
@@ -27,10 +28,16 @@ const Header = () => {
         )}
         <div className={header.gnav}>
           {loginUserEmail ? (
-            <Link href="/user/myPage">
-              <MaterialSymbolsContactPageRounded />
-              マイページ
-            </Link>
+            <>
+              <Link href="/user/myPage">
+                <MaterialSymbolsContactPageRounded />
+                マイページ
+              </Link>
+              <Link href="/review/post">
+                <MaterialSymbolsEditSquareOutlineRounded />
+                投稿する
+              </Link>
+            </>
           ) : (
             <Link href="/user/login">
               <MaterialSymbolsLogin />

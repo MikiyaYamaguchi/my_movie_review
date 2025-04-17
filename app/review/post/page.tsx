@@ -1,5 +1,6 @@
 "use client";
 
+import post from "@/app/styles/post.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -55,58 +56,75 @@ const Post = () => {
     return (
       <div>
         <h1>レビュー投稿</h1>
+        <p>映画情報と星レビュー、感想を入力してください。</p>
         <form onSubmit={handleSubmit}>
           <table>
             <tbody>
               <tr>
-                <th>タイトル</th>
+                <th>
+                  タイトル<span className={post.required}>必須</span>
+                </th>
                 <td>
                   <input
                     type="text"
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    className={post.input}
                     required
                   />
                 </td>
               </tr>
               <tr>
-                <th>公開日</th>
+                <th>
+                  公開日<span className={post.required}>必須</span>
+                </th>
                 <td>
                   <DatePicker
                     selected={date}
                     onChange={handleDateChange}
                     dateFormat="yyyy/MM/dd"
+                    className={post.input}
+                    required
                   />
                 </td>
               </tr>
               <tr>
-                <th>ジャンル</th>
+                <th>
+                  ジャンル<span className={post.required}>必須</span>
+                </th>
                 <td>
                   <input
                     type="text"
                     name="genre"
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
+                    className={post.input}
                     required
                   />
                 </td>
               </tr>
               <tr>
-                <th>ポスター画像</th>
+                <th>
+                  ポスター画像<span className={post.required}>必須</span>
+                </th>
                 <td>
                   <input
                     type="text"
                     name="image"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
+                    className={post.input}
                     required
                   />
                 </td>
               </tr>
               <tr>
-                <th>星レビュー</th>
+                <th>
+                  星レビュー<span className={post.required}>必須</span>
+                </th>
                 <td>
+                  <span className={post.star}>★</span>
                   <input
                     type="number"
                     name="star"
@@ -114,25 +132,30 @@ const Post = () => {
                     min="1"
                     value={star}
                     onChange={(e) => setStar(Number(e.target.value))}
+                    className={post.input_shrot}
                     required
                   />
                 </td>
               </tr>
               <tr>
-                <th>感想</th>
+                <th>
+                  感想<span className={post.required}>必須</span>
+                </th>
                 <td>
                   <textarea
                     name="thoughts"
                     id="thoughts"
                     value={thoughts}
                     onChange={(e) => setThoughts(e.target.value)}
+                    className={post.input}
+                    rows={30}
                     required
                   ></textarea>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button>投稿</button>
+          <button className={post.submit}>投稿</button>
         </form>
       </div>
     );
