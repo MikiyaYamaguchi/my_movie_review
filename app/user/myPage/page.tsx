@@ -1,8 +1,13 @@
 "use client";
 
+import {
+  MaterialSymbolsEditSquareOutlineRounded2,
+  MaterialSymbolsLogout,
+} from "@/app/components/icons";
 import { deleteReview, getReviewByEmail } from "@/app/lib/review";
 import { getUser } from "@/app/lib/user";
 import card from "@/app/styles/card.module.scss";
+import myPage from "@/app/styles/myPage.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -61,6 +66,15 @@ const MyPage = () => {
     location.reload();
   };
 
+  const handleLogout = () => {
+    const confirmed = window.confirm("ログアウトしますか？");
+    if (confirmed) {
+      localStorage.removeItem("token");
+      router.refresh();
+      location.reload();
+    }
+  };
+
   const listReviews = reviews.map((review: Review) => {
     let starReview = "";
     for (let i = 0; i < Number(review.star); i++) {
@@ -100,6 +114,18 @@ const MyPage = () => {
     return (
       <div>
         <h1>マイページ</h1>
+        <div className={myPage.userOperationWrap}>
+          <p>
+            <Link href="/review/post">
+              <MaterialSymbolsEditSquareOutlineRounded2 />
+              レビューを投稿する
+            </Link>
+          </p>
+          <p className={myPage.logout} onClick={handleLogout}>
+            <MaterialSymbolsLogout />
+            ログアウト
+          </p>
+        </div>
         <section>
           <h2>ユーザー情報</h2>
           <table>

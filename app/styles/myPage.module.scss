@@ -1,0 +1,28 @@
+.userOperationWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4%;
+  p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 5px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+    }
+    &:not(:first-child) {
+      margin-left: 2%;
+    }
+  }
+}
+
+.logout {
+  color: var(--accent-color);
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
