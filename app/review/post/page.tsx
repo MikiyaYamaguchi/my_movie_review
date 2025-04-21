@@ -29,6 +29,7 @@ const Post = () => {
   const [date, setDate] = useState(new Date());
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState("");
+  const [overview, setOverview] = useState("");
   const [star, setStar] = useState(1);
   const [thoughts, setThoughts] = useState("");
   const [movie, setMovie] = useState<Movie[]>([]);
@@ -58,6 +59,7 @@ const Post = () => {
         body: JSON.stringify({
           title: title,
           date: date,
+          overview: overview,
           genre: genre,
           image: image,
           star: star,
@@ -101,13 +103,13 @@ const Post = () => {
       })
       .join(",");
     setGenre(genreNames);
+    setOverview(item.overview);
     setModalOpen(false);
   };
 
   const fetchGenres = async () => {
     const genreData = await getMovieGenre();
     setGenres(genreData);
-    console.log(genreData);
   };
 
   useEffect(() => {
@@ -230,6 +232,21 @@ const Post = () => {
                     required
                     readOnly
                   />
+                </td>
+              </tr>
+              <tr>
+                <th>あらすじ</th>
+                <td>
+                  <textarea
+                    name="overview"
+                    id="overview"
+                    value={overview}
+                    onChange={(e) => setOverview(e.target.value)}
+                    className={post.input}
+                    rows={10}
+                    required
+                    readOnly
+                  ></textarea>
                 </td>
               </tr>
               <tr>

@@ -33,6 +33,11 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
               <span key={index}>{genre}</span>
             ))}
           </p>
+          <p className={single.overview}>
+            あらすじ：
+            <br />
+            {singleReview.overview}
+          </p>
           <p className={single.star}>{starReview}</p>
           <h3>感想</h3>
           <p className={single.thoughts}>{singleReview.thoughts}</p>

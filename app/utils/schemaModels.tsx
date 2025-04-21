@@ -7,6 +7,7 @@ const ReviewSchema = new Schema({
   date: Date,
   genre: String,
   image: String,
+  overview: String,
   star: Number,
   thoughts: String,
   email: String,

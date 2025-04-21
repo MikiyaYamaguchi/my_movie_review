@@ -13,6 +13,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
   const [date, setDate] = useState(new Date());
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState("");
+  const [overview, setOverview] = useState("");
   const [star, setStar] = useState(1);
   const [thoughts, setThoughts] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       setDate(singleReview.date);
       setGenre(singleReview.genre);
       setImage(singleReview.image);
+      setOverview(singleReview.overview);
       setStar(singleReview.star);
       setThoughts(singleReview.thoughts);
       setEmail(singleReview.email);
@@ -59,6 +61,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
             date: date,
             genre: genre,
             image: image,
+            overview: overview,
             star: star,
             thoughts: thoughts,
             email: loginUserEmail,
@@ -132,6 +135,20 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     required
                     readOnly
                   />
+                </td>
+              </tr>
+              <tr>
+                <th>あらすじ</th>
+                <td>
+                  <textarea
+                    name="overview"
+                    id="overview"
+                    onChange={(e) => setOverview(e.target.value)}
+                    className={update.input}
+                    rows={10}
+                    required
+                    readOnly
+                  ></textarea>
                 </td>
               </tr>
               <tr>
