@@ -1,0 +1,47 @@
+.input {
+  width: 80%;
+  padding: 0.6em;
+  border: 1px solid #999;
+  @media screen and (max-width: 767px) {
+    width: 95%;
+  }
+}
+
+.input_shrot {
+  width: 10%;
+  padding: 0.6em;
+  border: 1px solid #999;
+}
+
+.required {
+  color: var(--accent-color);
+  font-size: 12px;
+  margin-left: 10px;
+  @media screen and (max-width: 767px) {
+    display: block;
+    margin-left: 0;
+    font-size: 10px;
+  }
+}
+
+.star {
+  color: #ffd700;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.submit {
+  display: block;
+  margin: 4% auto 0;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  background: transparent;
+  cursor: pointer;
+  padding: 0.2em 1.5em;
+  font-size: 16px;
+  transition: 0.2s;
+  &:hover {
+    background: var(--accent-color);
+    color: var(--text-color-reversal);
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { getSingleReview } from "@/app/lib/review";
+import update from "@/app/styles/update.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -87,7 +88,9 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    className={update.input}
                     required
+                    readOnly
                   />
                 </td>
               </tr>
@@ -97,7 +100,9 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                   <DatePicker
                     selected={date}
                     onChange={handleDateChange}
+                    className={update.input}
                     dateFormat="yyyy/MM/dd"
+                    readOnly
                   />
                 </td>
               </tr>
@@ -109,7 +114,9 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     name="genre"
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
+                    className={update.input}
                     required
+                    readOnly
                   />
                 </td>
               </tr>
@@ -121,7 +128,9 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     name="image"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
+                    className={update.input}
                     required
+                    readOnly
                   />
                 </td>
               </tr>
@@ -135,6 +144,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     min="1"
                     value={star}
                     onChange={(e) => setStar(Number(e.target.value))}
+                    className={update.input_shrot}
                     required
                   />
                 </td>
@@ -147,13 +157,15 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                     id="thoughts"
                     value={thoughts}
                     onChange={(e) => setThoughts(e.target.value)}
+                    className={update.input}
+                    rows={30}
                     required
                   ></textarea>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button>更新</button>
+          <button className={update.submit}>更新</button>
         </form>
       </div>
     );
