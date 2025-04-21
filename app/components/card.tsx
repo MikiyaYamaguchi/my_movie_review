@@ -27,7 +27,7 @@ const Card = ({ review }: { review: Review }) => {
           <Image src={review.image} fill alt={review.title} />
         </div>
         <p className={card.title}>{review.title}</p>
-        <p className={card.date}>{date}</p>
+        <p className={card.date}>公開日：{date}</p>
         <p className={card.star}>{starReview}</p>
         <p className={card.genre}>
           {genreArray.map((genre, index) => (
