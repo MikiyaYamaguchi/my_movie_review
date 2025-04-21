@@ -14,6 +14,7 @@ const Header = () => {
   const { isAuthenticated } = useAuth();
   const path = usePathname();
   const isTop = path === "/";
+
   return (
     <header className={header.header}>
       <div className={header.inner}>

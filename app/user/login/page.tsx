@@ -34,7 +34,9 @@ const Login = () => {
         localStorage.setItem("email", user.email);
         alert(jsonData.message);
         router.push("/user/myPage");
-        router.refresh();
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       } else {
         alert(jsonData.message);
       }
