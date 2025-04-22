@@ -3,7 +3,7 @@ import Card from "@/app/components/card";
 interface Review {
   _id: string;
   title: string;
-  date: Date;
+  release_date: Date;
   genre: string;
   image: string;
   star: number;

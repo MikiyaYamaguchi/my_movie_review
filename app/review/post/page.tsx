@@ -40,9 +40,9 @@ const Post = () => {
   const router = useRouter();
   const loginUserEmail = useAuth();
 
-  const handleDateChange = (date: Date | null) => {
-    if (date) {
-      const formattedDate = date.toISOString();
+  const handleDateChange = (release_date: Date | null) => {
+    if (release_date) {
+      const formattedDate = release_date.toISOString();
       setDate(new Date(formattedDate));
     }
   };
@@ -58,7 +58,7 @@ const Post = () => {
         },
         body: JSON.stringify({
           title: title,
-          date: date,
+          release_date: date,
           overview: overview,
           genre: genre,
           image: image,
@@ -81,6 +81,7 @@ const Post = () => {
       setError("");
       const movieData = await getMovieByTitle(title);
       setMovie(movieData);
+      console.log(movieData);
       if (movieData.length) {
         setModalOpen(true);
       } else {

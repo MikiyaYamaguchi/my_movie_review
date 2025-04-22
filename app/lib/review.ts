@@ -1,6 +1,6 @@
 //レビューを全て取得
-export const getAllReviews = async () => {
-  const response = await fetch("http://localhost:3000/api/review/readall", {
+export const getAllReviews = async (limit: number) => {
+  const response = await fetch(`http://localhost:3000/api/review/readall?limit=${limit}`, {
     cache: "no-store",
   });
   const jsonData = await response.json();
@@ -23,6 +23,17 @@ export const getSingleReview = async (id: string) => {
 export const getReviewByEmail = async (email: string) => {
   const response = await fetch(
     `http://localhost:3000/api/review/readByEmail?email=${email}`,
+    { cache: "no-cache" }
+  );
+  const jsonData = await response.json();
+  const reviews = jsonData.reviews;
+  return reviews;
+};
+
+//レビューを星レビューを元に取得
+export const getReviewByStar = async (star: number,limit: number) => {
+  const response = await fetch(
+    `http://localhost:3000/api/review/readByStar?star=${star}&limit=${limit}`,
     { cache: "no-cache" }
   );
   const jsonData = await response.json();

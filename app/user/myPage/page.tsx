@@ -23,7 +23,7 @@ interface User {
 interface Review {
   _id: string;
   title: string;
-  date: Date;
+  release_date: Date;
   genre: string;
   image: string;
   star: number;
@@ -81,7 +81,7 @@ const MyPage = () => {
       starReview += "★";
     }
     const genreArray = review.genre.split(",");
-    const date = format(new Date(review.date), "yyyy.M.d");
+    const date = format(new Date(review.release_date), "yyyy.M.d");
     return (
       <div key={review._id} className="col span_2">
         <Link href={`/review/single/${review._id}`} className={card.card}>
@@ -89,7 +89,7 @@ const MyPage = () => {
             <Image src={review.image} fill alt={review.title} />
           </div>
           <p className={card.title}>{review.title}</p>
-          <p className={card.date}>公開日：{date}</p>
+          <p className={card.release_date}>公開日：{date}</p>
           <p className={card.star}>{starReview}</p>
           <p className={card.genre}>
             {genreArray.map((genre, index) => (

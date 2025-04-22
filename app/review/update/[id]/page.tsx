@@ -26,7 +26,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       const { id } = await context.params;
       const singleReview = await getSingleReview(id);
       setTitle(singleReview.title);
-      setDate(singleReview.date);
+      setDate(singleReview.release_date);
       setGenre(singleReview.genre);
       setImage(singleReview.image);
       setOverview(singleReview.overview);
@@ -37,9 +37,9 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
     getTargetReview();
   }, []);
 
-  const handleDateChange = (date: Date | null) => {
-    if (date) {
-      const formattedDate = date.toISOString();
+  const handleDateChange = (release_date: Date | null) => {
+    if (release_date) {
+      const formattedDate = release_date.toISOString();
       setDate(new Date(formattedDate));
     }
   };
@@ -58,7 +58,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
           },
           body: JSON.stringify({
             title: title,
-            date: date,
+            release_date: date,
             genre: genre,
             image: image,
             overview: overview,

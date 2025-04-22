@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
   title: String,
-  date: Date,
+  release_date: Date,
   genre: String,
   image: String,
   overview: String,

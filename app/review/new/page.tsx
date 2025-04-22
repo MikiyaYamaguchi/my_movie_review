@@ -4,7 +4,7 @@ import { getAllReviews } from "@/app/lib/review";
 interface Review {
   _id: string;
   title: string;
-  date: Date;
+  release_date: Date;
   genre: string;
   image: string;
   star: number;
@@ -12,7 +12,7 @@ interface Review {
 }
 
 const New = async () => {
-  const allReviews = await getAllReviews();
+  const allReviews = await getAllReviews(0);
   const listReviews = allReviews.map((review: Review) => {
     return <Card review={review} key={review._id} />;
   });

@@ -11,7 +11,7 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
   for (let i = 0; i < Number(singleReview.star); i++) {
     starReview += "★";
   }
-  const date = format(new Date(singleReview.date), "yyyy.M.d");
+  const date = format(new Date(singleReview.release_date), "yyyy.M.d");
   const genreArray = singleReview.genre.split(",");
   return (
     <div>
@@ -26,7 +26,7 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
         </div>
         <div>
           <p className={single.title}>{singleReview.title}</p>
-          <p className={single.date}>公開日：{date}</p>
+          <p className={single.release_date}>公開日：{date}</p>
           <p className={single.genre}>
             ジャンル：
             {genreArray.map((genre: string, index: number) => (
