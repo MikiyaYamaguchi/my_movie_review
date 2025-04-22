@@ -18,7 +18,7 @@ const New = async () => {
   });
   return (
     <>
-      <h2>新着レビュー</h2>
+      <h1>新着レビュー</h1>
       <div className="row sp-col-2">{listReviews}</div>
     </>
   );
