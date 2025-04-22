@@ -62,6 +62,9 @@ h2 {
 }
 
 .row {
+  &:not(:last-child) {
+    margin-bottom: 4%;
+  }
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
@@ -188,5 +191,25 @@ table {
         width: 35%;
       }
     }
+  }
+}
+
+.more {
+  position: relative;
+  display: table;
+  margin: 0 0 0 auto;
+  padding-right: 30px;
+  &:after {
+    content: "";
+    width: 23px;
+    height: 4px;
+    border-bottom: 1px solid var(--text-color);
+    border-right: 1px solid var(--text-color);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    transform: skew(45deg);
   }
 }

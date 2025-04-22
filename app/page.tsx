@@ -12,14 +12,18 @@ const Home = async () => {
       <section>
         <h2>新着レビュー</h2>
         <ReviewList reviews={allReviews} />
-        <Link href="/review/new">もっと見る</Link>
+        <Link href="/review/new" className="more">
+          新着レビューをもっと見る
+        </Link>
       </section>
       <section>
         <h2>星5のレビュー</h2>
         {reviewsByStarFive.length ? (
           <>
             <ReviewList reviews={reviewsByStarFive} />
-            <Link href="/review/star/5">もっと見る</Link>
+            <Link href="/review/star/5" className="more">
+              星5のレビューをもっと見る
+            </Link>
           </>
         ) : (
           <p>記事がありません。</p>
@@ -30,7 +34,9 @@ const Home = async () => {
         {reviewsByStarFour.length ? (
           <>
             <ReviewList reviews={reviewsByStarFour} />
-            <Link href="/review/star/4">もっと見る</Link>
+            <Link href="/review/star/4" className="more">
+              星4のレビューをもっと見る
+            </Link>
           </>
         ) : (
           <p>記事がありません。</p>
@@ -41,7 +47,9 @@ const Home = async () => {
         {reviewsByStarThree.length ? (
           <>
             <ReviewList reviews={reviewsByStarThree} />
-            <Link href="/review/star/3">もっと見る</Link>
+            <Link href="/review/star/3" className="more">
+              星3のレビューをもっと見る
+            </Link>
           </>
         ) : (
           <p>記事がありません。</p>
