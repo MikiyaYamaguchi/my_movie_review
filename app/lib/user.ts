@@ -1,7 +1,7 @@
 //ユーザー情報取得
 export const getUser = async (email: string) => {
 	try {
-		const response = await fetch("http://localhost:3000/api/user/getUser", {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/getUser`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

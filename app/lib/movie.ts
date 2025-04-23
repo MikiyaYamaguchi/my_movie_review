@@ -2,7 +2,7 @@
 export const getMovieGenre = async () => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=652fd3b22f85b91d1bea2f391e7efe20&language=ja`
+      `${process.env.NEXT_PUBLIC_MOVIE_URL}/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}&language=ja`
     );
 
     if (!response.ok) {
@@ -21,7 +21,7 @@ export const getMovieGenre = async () => {
 export const getFiveMovieGenre = async () => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=652fd3b22f85b91d1bea2f391e7efe20&language=ja`
+      `${process.env.NEXT_PUBLIC_MOVIE_URL}/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}&language=ja`
     );
 
     if (!response.ok) {
@@ -40,7 +40,7 @@ export const getFiveMovieGenre = async () => {
 export const getMovieByTitle = async (title: string) => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=652fd3b22f85b91d1bea2f391e7efe20&query=${encodeURIComponent(
+      `${process.env.NEXT_PUBLIC_MOVIE_URL}/3/search/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_KEY}&query=${encodeURIComponent(
         title
       )}&language=ja`
     );

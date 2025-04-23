@@ -49,24 +49,27 @@ const Post = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/review/post", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          title: title,
-          release_date: date,
-          overview: overview,
-          genre: genre,
-          image: image,
-          star: star,
-          thoughts: thoughts,
-          email: loginUserEmail,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/review/post`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            title: title,
+            release_date: date,
+            overview: overview,
+            genre: genre,
+            image: image,
+            star: star,
+            thoughts: thoughts,
+            email: loginUserEmail,
+          }),
+        }
+      );
       const jsonData = await response.json();
       alert(jsonData.message);
       router.push("/");

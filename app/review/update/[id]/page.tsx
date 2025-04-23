@@ -50,7 +50,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
     const { id } = await context.params;
     try {
       const response = await fetch(
-        `http://localhost:3000/api/review/update/${id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/review/update/${id}`,
         {
           method: "PUT",
           headers: {

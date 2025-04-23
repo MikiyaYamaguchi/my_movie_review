@@ -1,6 +1,6 @@
 //レビューを全て取得
 export const getAllReviews = async (limit: number) => {
-  const response = await fetch(`http://localhost:3000/api/review/readall?limit=${limit}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/review/readall?limit=${limit}`, {
     cache: "no-store",
   });
   const jsonData = await response.json();
@@ -11,7 +11,7 @@ export const getAllReviews = async (limit: number) => {
 //レビューを一つだけ取得
 export const getSingleReview = async (id: string) => {
   const response = await fetch(
-    `http://localhost:3000/api/review/readsingle/${id}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/review/readsingle/${id}`,
     { cache: "no-cache" }
   );
   const jsonData = await response.json();
@@ -22,7 +22,7 @@ export const getSingleReview = async (id: string) => {
 //レビューをメールアドレスを元に取得
 export const getReviewByEmail = async (email: string) => {
   const response = await fetch(
-    `http://localhost:3000/api/review/readByEmail?email=${email}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/review/readByEmail?email=${email}`,
     { cache: "no-cache" }
   );
   const jsonData = await response.json();
@@ -33,7 +33,7 @@ export const getReviewByEmail = async (email: string) => {
 //レビューを星レビューを元に取得
 export const getReviewByStar = async (star: number,limit: number) => {
   const response = await fetch(
-    `http://localhost:3000/api/review/readByStar?star=${star}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/review/readByStar?star=${star}&limit=${limit}`,
     { cache: "no-cache" }
   );
   const jsonData = await response.json();
@@ -44,7 +44,7 @@ export const getReviewByStar = async (star: number,limit: number) => {
 //レビューをgenreを元に取得
 export const getReviewByGenre = async (genre: string,limit: number) => {
   const response = await fetch(
-    `http://localhost:3000/api/review/readByGenre?genre=${genre}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/review/readByGenre?genre=${genre}&limit=${limit}`,
     { cache: "no-cache" }
   );
   const jsonData = await response.json();
@@ -55,7 +55,7 @@ export const getReviewByGenre = async (genre: string,limit: number) => {
 //レビューを削除
 export const deleteReview = async(id: string, email: string) => {
 	try {
-		const response = await fetch(`http://localhost:3000/api/review/delete/${id}`, {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/review/delete/${id}`, {
 			method: "DELETE",
 			headers: {
 				"Accept": "application/json",
