@@ -154,6 +154,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
               <tr>
                 <th>星レビュー</th>
                 <td>
+                  <span className={update.star}>★</span>
                   <input
                     type="number"
                     name="star"
