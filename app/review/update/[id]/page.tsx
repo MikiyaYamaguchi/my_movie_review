@@ -17,6 +17,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
   const [star, setStar] = useState(1);
   const [thoughts, setThoughts] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const loginUserEmail = useAuth();
@@ -33,6 +34,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       setStar(singleReview.star);
       setThoughts(singleReview.thoughts);
       setEmail(singleReview.email);
+      setLoading(true);
     };
     getTargetReview();
   }, []);
@@ -76,117 +78,121 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       alert("レビュー更新失敗");
     }
   };
-  if (loginUserEmail === email) {
-    return (
-      <div>
-        <h1>レビュー更新</h1>
-        <form onSubmit={handleSubmit}>
-          <table>
-            <tbody>
-              <tr>
-                <th>タイトル</th>
-                <td>
-                  <input
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className={update.input}
-                    required
-                    readOnly
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>公開日</th>
-                <td>
-                  <DatePicker
-                    selected={date}
-                    onChange={handleDateChange}
-                    className={update.input}
-                    dateFormat="yyyy/MM/dd"
-                    readOnly
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>ジャンル</th>
-                <td>
-                  <input
-                    type="text"
-                    name="genre"
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                    className={update.input}
-                    required
-                    readOnly
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>ポスター画像</th>
-                <td>
-                  <input
-                    type="text"
-                    name="image"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    className={update.input}
-                    required
-                    readOnly
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>あらすじ</th>
-                <td>
-                  <textarea
-                    name="overview"
-                    id="overview"
-                    onChange={(e) => setOverview(e.target.value)}
-                    className={update.input}
-                    rows={10}
-                    required
-                    readOnly
-                  ></textarea>
-                </td>
-              </tr>
-              <tr>
-                <th>星レビュー</th>
-                <td>
-                  <span className={update.star}>★</span>
-                  <input
-                    type="number"
-                    name="star"
-                    max="5"
-                    min="1"
-                    value={star}
-                    onChange={(e) => setStar(Number(e.target.value))}
-                    className={update.input_shrot}
-                    required
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>感想</th>
-                <td>
-                  <textarea
-                    name="thoughts"
-                    id="thoughts"
-                    value={thoughts}
-                    onChange={(e) => setThoughts(e.target.value)}
-                    className={update.input}
-                    rows={30}
-                    required
-                  ></textarea>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button className={update.submit}>更新</button>
-        </form>
-      </div>
-    );
+  if (loading) {
+    if (loginUserEmail === email) {
+      return (
+        <div>
+          <h1>レビュー更新</h1>
+          <form onSubmit={handleSubmit}>
+            <table>
+              <tbody>
+                <tr>
+                  <th>タイトル</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="title"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className={update.input}
+                      required
+                      readOnly
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>公開日</th>
+                  <td>
+                    <DatePicker
+                      selected={date}
+                      onChange={handleDateChange}
+                      className={update.input}
+                      dateFormat="yyyy/MM/dd"
+                      readOnly
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>ジャンル</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="genre"
+                      value={genre}
+                      onChange={(e) => setGenre(e.target.value)}
+                      className={update.input}
+                      required
+                      readOnly
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>ポスター画像</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="image"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
+                      className={update.input}
+                      required
+                      readOnly
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>あらすじ</th>
+                  <td>
+                    <textarea
+                      name="overview"
+                      id="overview"
+                      onChange={(e) => setOverview(e.target.value)}
+                      className={update.input}
+                      rows={10}
+                      required
+                      readOnly
+                    ></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th>星レビュー</th>
+                  <td>
+                    <span className={update.star}>★</span>
+                    <input
+                      type="number"
+                      name="star"
+                      max="5"
+                      min="1"
+                      value={star}
+                      onChange={(e) => setStar(Number(e.target.value))}
+                      className={update.input_shrot}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>感想</th>
+                  <td>
+                    <textarea
+                      name="thoughts"
+                      id="thoughts"
+                      value={thoughts}
+                      onChange={(e) => setThoughts(e.target.value)}
+                      className={update.input}
+                      rows={30}
+                      required
+                    ></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button className={update.submit}>更新</button>
+          </form>
+        </div>
+      );
+    }
+  } else {
+    return <p>ローディング中...</p>;
   }
 };
 
