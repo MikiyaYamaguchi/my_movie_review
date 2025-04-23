@@ -41,6 +41,17 @@ export const getReviewByStar = async (star: number,limit: number) => {
   return reviews;
 };
 
+//レビューをgenreを元に取得
+export const getReviewByGenre = async (genre: string,limit: number) => {
+  const response = await fetch(
+    `http://localhost:3000/api/review/readByGenre?genre=${genre}&limit=${limit}`,
+    { cache: "no-cache" }
+  );
+  const jsonData = await response.json();
+  const reviews = jsonData.reviews;
+  return reviews;
+};
+
 //レビューを削除
 export const deleteReview = async(id: string, email: string) => {
 	try {
