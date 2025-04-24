@@ -52,6 +52,17 @@ export const getReviewByGenre = async (genre: string,limit: number) => {
   return reviews;
 };
 
+//レビューをキーワードを元に取得
+export const getReviewByKeyword = async (keyword: string) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/review/readByKeyword?keyword=${keyword}`,
+    { cache: "no-cache" }
+  );
+  const jsonData = await response.json();
+  const reviews = jsonData.reviews;
+  return reviews;
+};
+
 //レビューを削除
 export const deleteReview = async(id: string, email: string) => {
 	try {
