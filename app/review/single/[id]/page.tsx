@@ -6,6 +6,7 @@ import Image from "next/image";
 const Review = async (context: { params: Promise<{ id: string }> }) => {
   const { id } = await context.params;
   const singleReview = await getSingleReview(id);
+  console.log(singleReview);
 
   let starReview = "";
   for (let i = 0; i < Number(singleReview.star); i++) {
@@ -40,7 +41,12 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
           </p>
           <p className={single.star}>{starReview}</p>
           <h3>感想</h3>
-          <p className={single.thoughts}>{singleReview.thoughts}</p>
+          <p
+            className={single.thoughts}
+            dangerouslySetInnerHTML={{
+              __html: singleReview.thoughts.replace(/\n/g, "<br>"),
+            }}
+          ></p>
         </div>
       </div>
     </div>
