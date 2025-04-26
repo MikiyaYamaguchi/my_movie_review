@@ -6,7 +6,7 @@ import post from "@/app/styles/post.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -119,6 +119,16 @@ const Post = () => {
   useEffect(() => {
     fetchGenres();
   }, []);
+
+  const thoughtsRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleThoughtsInput = () => {
+    const thoughtsTextarea = thoughtsRef.current;
+    if (thoughtsTextarea) {
+      thoughtsTextarea.style.height = "auto";
+      thoughtsTextarea.style.height = `${thoughtsTextarea.scrollHeight}px`;
+    }
+  };
 
   if (loginUserEmail) {
     return (
@@ -277,12 +287,15 @@ const Post = () => {
                 </th>
                 <td>
                   <textarea
+                    ref={thoughtsRef}
                     name="thoughts"
                     id="thoughts"
                     value={thoughts}
                     onChange={(e) => setThoughts(e.target.value)}
+                    onInput={handleThoughtsInput}
                     className={post.input}
                     rows={30}
+                    style={{ overflow: "hidden", resize: "none" }}
                     required
                   ></textarea>
                 </td>

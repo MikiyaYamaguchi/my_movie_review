@@ -4,7 +4,7 @@ import { getSingleReview } from "@/app/lib/review";
 import update from "@/app/styles/update.module.scss";
 import useAuth from "@/app/utils/useAuth";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -78,6 +78,17 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       alert("レビュー更新失敗");
     }
   };
+
+  const thoughtsRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleThoughtsInput = () => {
+    const thoughtsTextarea = thoughtsRef.current;
+    if (thoughtsTextarea) {
+      thoughtsTextarea.style.height = "auto";
+      thoughtsTextarea.style.height = `${thoughtsTextarea.scrollHeight}px`;
+    }
+  };
+
   if (loading) {
     if (loginUserEmail === email) {
       return (
@@ -174,12 +185,15 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                   <th>感想</th>
                   <td>
                     <textarea
+                      ref={thoughtsRef}
                       name="thoughts"
                       id="thoughts"
                       value={thoughts}
                       onChange={(e) => setThoughts(e.target.value)}
+                      onInput={handleThoughtsInput}
                       className={update.input}
                       rows={30}
+                      style={{ overflow: "hidden", resize: "none" }}
                       required
                     ></textarea>
                   </td>
