@@ -1,6 +1,7 @@
 "use client";
 import ClientMetadata from "@/app/components/clientMetadata";
 import login from "@/app/styles/login.module.scss";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
@@ -89,6 +90,9 @@ const Login = () => {
         </table>
         <button className={login.submit}>ログイン</button>
       </form>
+      <div className={login.registerLink}>
+        <Link href="/user/register">会員登録はこちら</Link>
+      </div>
     </div>
   );
 };
