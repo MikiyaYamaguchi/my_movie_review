@@ -1,7 +1,14 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import ReviewList from "./components/reviewList";
 import { getFiveMovieGenre } from "./lib/movie";
 import { getAllReviews, getReviewByGenre, getReviewByStar } from "./lib/review";
+
+export const metadata: Metadata = {
+  title: "My Movie Review | 私だけの映画レビュー投稿サイト",
+  description:
+    "My Movie Reviewは映画レビュー投稿サイトです。自身の見た映画の感想を自由に投稿しましょう。",
+};
 
 interface Review {
   _id: string;
@@ -27,6 +34,7 @@ const Home = async () => {
     const reviews = await getReviewByGenre(genre.name, 8);
     reviewByGenres[i] = reviews;
   }
+
   return (
     <>
       <section>

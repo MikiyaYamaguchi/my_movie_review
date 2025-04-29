@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/app/components/card";
+import ClientMetadata from "@/app/components/clientMetadata";
 import { getReviewByGenre } from "@/app/lib/review";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -33,6 +34,10 @@ const Genre = () => {
   });
   return (
     <>
+      <ClientMetadata
+        title={`${genre}レビュー一覧ページ | My Moview Review`}
+        description={`${genre}レビューの一覧ページです。`}
+      />
       <h1>{genre}</h1>
       <div className="row sp-col-2">{listReviews}</div>
     </>

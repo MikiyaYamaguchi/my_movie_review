@@ -1,4 +1,5 @@
 "use client";
+import ClientMetadata from "@/app/components/clientMetadata";
 import login from "@/app/styles/login.module.scss";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
@@ -49,6 +50,10 @@ const Login = () => {
   };
   return (
     <div>
+      <ClientMetadata
+        title={`ログイン | My Moview Review`}
+        description={`ログインページです。`}
+      />
       <h1>ログイン</h1>
       <form onSubmit={handleSubmit}>
         <table>

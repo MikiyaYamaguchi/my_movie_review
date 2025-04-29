@@ -1,5 +1,11 @@
 import Card from "@/app/components/card";
 import { getAllReviews } from "@/app/lib/review";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "新着レビュー | My Movie Review",
+  description: "My Movie Reviewの新着レビュー一覧ページです。",
+};
 
 interface Review {
   _id: string;

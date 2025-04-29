@@ -1,12 +1,26 @@
 import { getSingleReview } from "@/app/lib/review";
 import single from "@/app/styles/single.module.scss";
 import { format } from "date-fns";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const id = params.id;
+  const singleReview = await getSingleReview(id);
+
+  return {
+    title: `${singleReview.title}のレビュー詳細ページ | My Movie Review`,
+    description: `${singleReview.title}のレビュー詳細ページです。`,
+  };
+};
 
 const Review = async (context: { params: Promise<{ id: string }> }) => {
   const { id } = await context.params;
   const singleReview = await getSingleReview(id);
-  console.log(singleReview);
 
   let starReview = "";
   for (let i = 0; i < Number(singleReview.star); i++) {

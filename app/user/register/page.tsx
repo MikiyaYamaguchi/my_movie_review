@@ -1,5 +1,6 @@
 "use client";
 
+import ClientMetadata from "@/app/components/clientMetadata";
 import register from "@/app/styles/register.module.scss";
 import React, { ChangeEvent, useState } from "react";
 
@@ -43,6 +44,10 @@ const Register = () => {
   };
   return (
     <div>
+      <ClientMetadata
+        title={`ユーザー登録 | My Moview Review`}
+        description={`ユーザー登録ページです。`}
+      />
       <h1>ユーザー登録</h1>
       <form onSubmit={handleSubmit}>
         <table>

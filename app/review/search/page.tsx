@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/app/components/card";
+import ClientMetadata from "@/app/components/clientMetadata";
 import { getReviewByKeyword } from "@/app/lib/review";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -34,6 +35,10 @@ const Search = () => {
   });
   return (
     <>
+      <ClientMetadata
+        title={`${keyword}の検索結果一覧ページ | My Moview Review`}
+        description={`${keyword}の検索結果一覧ページです。`}
+      />
       <h1>検索：{keyword}</h1>
       <div className="row sp-col-2">{listReviews}</div>
     </>

@@ -1,5 +1,6 @@
 "use client";
 
+import ClientMetadata from "@/app/components/clientMetadata";
 import { MaterialSymbolsSearchRounded } from "@/app/components/icons";
 import { getMovieByTitle, getMovieGenre } from "@/app/lib/movie";
 import post from "@/app/styles/post.module.scss";
@@ -133,6 +134,10 @@ const Post = () => {
   if (loginUserEmail) {
     return (
       <div>
+        <ClientMetadata
+          title={`レビュー投稿 | My Moview Review`}
+          description={`レビュー投稿ページです。`}
+        />
         <h1>レビュー投稿</h1>
         <p>
           映画情報を検索して、星レビュー、感想を入力してください。

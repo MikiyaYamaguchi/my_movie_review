@@ -1,5 +1,6 @@
 "use client";
 
+import ClientMetadata from "@/app/components/clientMetadata";
 import { getSingleReview } from "@/app/lib/review";
 import update from "@/app/styles/update.module.scss";
 import useAuth from "@/app/utils/useAuth";
@@ -93,6 +94,10 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
     if (loginUserEmail === email) {
       return (
         <div>
+          <ClientMetadata
+            title={`レビュー更新 | My Moview Review`}
+            description={`レビュー更新ページです。`}
+          />
           <h1>レビュー更新</h1>
           <form onSubmit={handleSubmit}>
             <table>

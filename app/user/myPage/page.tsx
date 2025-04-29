@@ -1,5 +1,6 @@
 "use client";
 
+import ClientMetadata from "@/app/components/clientMetadata";
 import {
   MaterialSymbolsEditSquareOutlineRounded2,
   MaterialSymbolsLogout,
@@ -113,6 +114,10 @@ const MyPage = () => {
   if (loginUserEmail === user.email) {
     return (
       <div>
+        <ClientMetadata
+          title={`マイページ | My Moview Review`}
+          description={`マイページです。`}
+        />
         <h1>マイページ</h1>
         <div className={myPage.userOperationWrap}>
           <p>
