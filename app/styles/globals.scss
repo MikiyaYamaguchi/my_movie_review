@@ -3,6 +3,9 @@
   --accent-color: #ce001a;
   --text-color: #222;
   --text-color-reversal: #fff;
+  --base-font: "-apple-system", BlinkMacSystemFont, "Helvetica Neue", Arial,
+    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic Medium", YuGothic,
+    Meiryo, sans-serif;
 }
 
 body {
@@ -10,6 +13,7 @@ body {
   font-size: 14px;
   line-height: 1.8;
   letter-spacing: 0.08em;
+  font-family: var(--base-font);
 }
 
 h1,
