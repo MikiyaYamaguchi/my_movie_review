@@ -1,19 +1,6 @@
 import Card from "@/app/components/card";
+import ClientMetadata from "@/app/components/clientMetadata";
 import { getReviewByStar } from "@/app/lib/review";
-import { Metadata } from "next";
-
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { star: string };
-}): Promise<Metadata> => {
-  const star = Number(params.star);
-
-  return {
-    title: `星${star}レビュー | My Movie Review`,
-    description: `星${star}レビューの一覧ページです。`,
-  };
-};
 
 interface Review {
   _id: string;
@@ -33,6 +20,10 @@ const Star = async (context: { params: Promise<{ star: number }> }) => {
   });
   return (
     <>
+      <ClientMetadata
+        title={`星${star}レビュー | My Movie Review`}
+        description={`星${star}レビューの一覧ページです。`}
+      />
       <h1>星{star}のレビュー</h1>
       <div className="row sp-col-2">{listReviews}</div>
     </>
