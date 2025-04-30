@@ -4,7 +4,7 @@ import Card from "@/app/components/card";
 import ClientMetadata from "@/app/components/clientMetadata";
 import { getReviewByGenre } from "@/app/lib/review";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface Review {
   _id: string;
@@ -29,13 +29,15 @@ const Genre = () => {
     };
     fetchReviews();
   }, [genre]);
+
   const listReviews = reviews.map((review: Review) => {
     return <Card review={review} key={review._id} />;
   });
+
   return (
     <>
       <ClientMetadata
-        title={`${genre}レビュー一覧ページ | My Moview Review`}
+        title={`${genre}レビュー一覧ページ | My Movie Review`}
         description={`${genre}レビューの一覧ページです。`}
       />
       <h1>{genre}</h1>
@@ -44,4 +46,10 @@ const Genre = () => {
   );
 };
 
-export default Genre;
+export default function GenrePage() {
+  return (
+    <Suspense fallback={<div>読み込み中...</div>}>
+      <Genre />
+    </Suspense>
+  );
+}
