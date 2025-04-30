@@ -4,7 +4,7 @@ import Card from "@/app/components/card";
 import ClientMetadata from "@/app/components/clientMetadata";
 import { getReviewByKeyword } from "@/app/lib/review";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface Review {
   _id: string;
@@ -45,4 +45,10 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>読み込み中...</div>}>
+      <Search />
+    </Suspense>
+  );
+}
