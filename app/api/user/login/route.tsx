@@ -1,5 +1,6 @@
 import connectDB from "@/app/utils/database";
 import { UserModel } from "@/app/utils/schemaModels";
+import bcrypt from "bcrypt";
 import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,7 +10,11 @@ export async function POST(request: NextRequest) {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email: reqBody.email });
     if (savedUserData) {
-      if (reqBody.password === savedUserData.password) {
+      const isPasswordMatch = await bcrypt.compare(
+        reqBody.password,
+        savedUserData.password
+      );
+      if (isPasswordMatch) {
         const secretKey = new TextEncoder().encode("my-movie-review-app-book");
         const payload = {
           email: reqBody.email,
