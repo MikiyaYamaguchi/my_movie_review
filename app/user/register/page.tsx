@@ -3,6 +3,7 @@
 import ClientMetadata from "@/app/components/clientMetadata";
 import Loading from "@/app/components/loading";
 import register from "@/app/styles/register.module.scss";
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 
 interface NewUser {
@@ -18,6 +19,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const router = useRouter();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewUser({
       ...newUser,
@@ -41,6 +43,10 @@ const Register = () => {
       );
       const jsonData = await response.json();
       alert(jsonData.message);
+      router.push("/user/myPage");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } catch {
       alert("ユーザー登録失敗");
     } finally {

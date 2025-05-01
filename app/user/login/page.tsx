@@ -44,7 +44,7 @@ const Login = () => {
         router.push("/user/myPage");
         setTimeout(() => {
           window.location.reload();
-        }, 100);
+        }, 500);
       } else {
         alert(jsonData.message);
       }
