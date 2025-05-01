@@ -1,10 +1,8 @@
 "use client";
 
 import ClientMetadata from "@/app/components/clientMetadata";
-import {
-  EosIconsLoading,
-  MaterialSymbolsSearchRounded,
-} from "@/app/components/icons";
+import { MaterialSymbolsSearchRounded } from "@/app/components/icons";
+import Loading from "@/app/components/loading";
 import { getMovieByTitle, getMovieGenre } from "@/app/lib/movie";
 import post from "@/app/styles/post.module.scss";
 import useAuth from "@/app/utils/useAuth";
@@ -145,14 +143,7 @@ const Post = () => {
           title={`レビュー投稿 | My Moview Review`}
           description={`レビュー投稿ページです。`}
         />
-        {isSubmitting && (
-          <div className={post.loadingOverlay}>
-            <div className={post.loader}>
-              <EosIconsLoading />
-              <span>Loading...</span>
-            </div>
-          </div>
-        )}
+        {isSubmitting && <Loading />}
         <h1>レビュー投稿</h1>
         <p>
           映画情報を検索して、星レビュー、感想を入力してください。
