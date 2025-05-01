@@ -39,6 +39,7 @@ const Post = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSearchingMovie, setIsSearchingMovie] = useState(false);
 
   const router = useRouter();
   const loginUserEmail = useAuth();
@@ -86,6 +87,7 @@ const Post = () => {
   };
 
   const searchMovie = async () => {
+    setIsSearchingMovie(true);
     try {
       setError("");
       const movieData = await getMovieByTitle(title);
@@ -99,6 +101,8 @@ const Post = () => {
     } catch (err) {
       setError("映画情報の取得に失敗しました");
       console.error(err);
+    } finally {
+      setIsSearchingMovie(false);
     }
   };
 
@@ -144,6 +148,7 @@ const Post = () => {
           description={`レビュー投稿ページです。`}
         />
         {isSubmitting && <Loading />}
+        {isSearchingMovie && <Loading />}
         <h1>レビュー投稿</h1>
         <p>
           映画情報を検索して、星レビュー、感想を入力してください。
