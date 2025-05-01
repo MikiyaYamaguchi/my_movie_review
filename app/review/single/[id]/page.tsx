@@ -34,9 +34,11 @@ const Review = async (context: { params: Promise<{ id: string }> }) => {
             <p className={single.title}>{singleReview.title}</p>
             <p className={single.release_date}>公開日：{date}</p>
             <p className={single.genre}>
-              ジャンル：
+              <span>ジャンル：</span>
               {genreArray.map((genre: string, index: number) => (
-                <span key={index}>{genre}</span>
+                <span className={single.genreChip} key={index}>
+                  {genre}
+                </span>
               ))}
             </p>
             <p className={single.overview}>
