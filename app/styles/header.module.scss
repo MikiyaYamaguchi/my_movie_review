@@ -5,8 +5,10 @@
   margin-bottom: 4%;
   a {
     color: var(--text-color-reversal);
-    &:hover {
-      color: var(--text-color-reversal);
+    @media screen and (min-width: 768px) {
+      &:hover {
+        color: var(--text-color-reversal);
+      }
     }
   }
 }

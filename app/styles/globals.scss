@@ -40,9 +40,11 @@ p {
 a {
   text-decoration: none;
   color: var(--main-color);
-  &:hover {
-    text-decoration: underline;
-    color: var(--main-color);
+  @media screen and (min-width: 768px) {
+    &:hover {
+      text-decoration: underline;
+      color: var(--main-color);
+    }
   }
 }
 

@@ -40,9 +40,11 @@
   padding: 0.2em 1.5em;
   font-size: 16px;
   transition: 0.2s;
-  &:hover {
-    background: var(--accent-color);
-    color: var(--text-color-reversal);
+  @media screen and (min-width: 768px) {
+    &:hover {
+      background: var(--accent-color);
+      color: var(--text-color-reversal);
+    }
   }
 }
 
@@ -100,12 +102,14 @@
       transition: 0.2s;
     }
   }
-  &:hover {
-    background: var(--accent-color);
-    color: var(--text-color-reversal);
-    svg {
-      path {
-        fill: #fff;
+  @media screen and (min-width: 768px) {
+    &:hover {
+      background: var(--accent-color);
+      color: var(--text-color-reversal);
+      svg {
+        path {
+          fill: #fff;
+        }
       }
     }
   }

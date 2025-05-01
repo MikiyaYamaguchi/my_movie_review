@@ -16,9 +16,11 @@
     border: 1px solid var(--accent-color);
     background: transparent;
     transition: 0.2s;
-    &:hover {
-      background: var(--accent-color);
-      color: #fff;
+    @media screen and (min-width: 768px) {
+      &:hover {
+        background: var(--accent-color);
+        color: #fff;
+      }
     }
   }
   @media screen and (min-width: 768px) {
