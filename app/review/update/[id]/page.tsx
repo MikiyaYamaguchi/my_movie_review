@@ -92,6 +92,15 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
     if (thoughtsTextarea) {
       thoughtsTextarea.style.height = "auto";
       thoughtsTextarea.style.height = `${thoughtsTextarea.scrollHeight}px`;
+
+      const bottomPosition =
+        thoughtsTextarea.offsetTop + thoughtsTextarea.offsetHeight;
+      if (window.scrollY + window.innerHeight < bottomPosition + 20) {
+        window.scrollTo({
+          top: bottomPosition - window.innerHeight + 100,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
