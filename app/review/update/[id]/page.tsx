@@ -1,6 +1,7 @@
 "use client";
 
 import ClientMetadata from "@/app/components/clientMetadata";
+import Loading from "@/app/components/loading";
 import { getSingleReview } from "@/app/lib/review";
 import update from "@/app/styles/update.module.scss";
 import useAuth from "@/app/utils/useAuth";
@@ -19,6 +20,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
   const [thoughts, setThoughts] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
   const loginUserEmail = useAuth();
@@ -49,6 +51,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { id } = await context.params;
+    setIsSubmitting(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/review/update/${id}`,
@@ -77,6 +80,8 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       router.refresh();
     } catch {
       alert("レビュー更新失敗");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -98,6 +103,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
             title={`レビュー更新 | My Moview Review`}
             description={`レビュー更新ページです。`}
           />
+          {isSubmitting && <Loading />}
           <h1>レビュー更新</h1>
           <form onSubmit={handleSubmit}>
             <table>
@@ -211,7 +217,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
       );
     }
   } else {
-    return <p>ローディング中...</p>;
+    return <Loading />;
   }
 };
 
