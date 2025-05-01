@@ -1,7 +1,10 @@
 "use client";
 
 import ClientMetadata from "@/app/components/clientMetadata";
-import { MaterialSymbolsSearchRounded } from "@/app/components/icons";
+import {
+  EosIconsLoading,
+  MaterialSymbolsSearchRounded,
+} from "@/app/components/icons";
 import { getMovieByTitle, getMovieGenre } from "@/app/lib/movie";
 import post from "@/app/styles/post.module.scss";
 import useAuth from "@/app/utils/useAuth";
@@ -37,6 +40,7 @@ const Post = () => {
   const [error, setError] = useState("");
   const [genres, setGenres] = useState<Genre[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
   const loginUserEmail = useAuth();
@@ -49,6 +53,7 @@ const Post = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/review/post`,
@@ -77,6 +82,8 @@ const Post = () => {
       router.refresh();
     } catch {
       alert("レビュー投稿失敗");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -138,6 +145,14 @@ const Post = () => {
           title={`レビュー投稿 | My Moview Review`}
           description={`レビュー投稿ページです。`}
         />
+        {isSubmitting && (
+          <div className={post.loadingOverlay}>
+            <div className={post.loader}>
+              <EosIconsLoading />
+              <span>Loading...</span>
+            </div>
+          </div>
+        )}
         <h1>レビュー投稿</h1>
         <p>
           映画情報を検索して、星レビュー、感想を入力してください。
