@@ -148,7 +148,7 @@ const MyPage = () => {
         </section>
         <section>
           <h2>投稿レビュー</h2>
-          <div className="row">
+          <div className="row sp-col-2">
             {reviews.length > 0 ? (
               listReviews
             ) : (
