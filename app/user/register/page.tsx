@@ -1,6 +1,7 @@
 "use client";
 
 import ClientMetadata from "@/app/components/clientMetadata";
+import Loading from "@/app/components/loading";
 import register from "@/app/styles/register.module.scss";
 import React, { ChangeEvent, useState } from "react";
 
@@ -11,6 +12,7 @@ interface NewUser {
 }
 
 const Register = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
     name: "",
     email: "",
@@ -24,6 +26,7 @@ const Register = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/user/register`,
@@ -40,6 +43,8 @@ const Register = () => {
       alert(jsonData.message);
     } catch {
       alert("ユーザー登録失敗");
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -48,6 +53,7 @@ const Register = () => {
         title={`ユーザー登録 | My Moview Review`}
         description={`ユーザー登録ページです。`}
       />
+      {isSubmitting && <Loading />}
       <h1>ユーザー登録</h1>
       <form onSubmit={handleSubmit}>
         <table>
