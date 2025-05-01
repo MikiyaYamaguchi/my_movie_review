@@ -1,5 +1,6 @@
 "use client";
 import ClientMetadata from "@/app/components/clientMetadata";
+import Loading from "@/app/components/loading";
 import login from "@/app/styles/login.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,7 @@ interface User {
 }
 
 const Login = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [user, setUser] = useState<User>({ email: "", password: "" });
   const router = useRouter();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +23,7 @@ const Login = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/user/login`,
@@ -47,6 +50,8 @@ const Login = () => {
       }
     } catch {
       alert("ログイン失敗");
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -55,6 +60,7 @@ const Login = () => {
         title={`ログイン | My Moview Review`}
         description={`ログインページです。`}
       />
+      {isSubmitting && <Loading />}
       <h1>ログイン</h1>
       <form onSubmit={handleSubmit}>
         <table>
