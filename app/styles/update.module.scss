@@ -7,6 +7,15 @@
   }
 }
 
+.select {
+  width: 10%;
+  padding: 0.4em;
+  border: 1px solid #999;
+  @media screen and (max-width: 767px) {
+    width: 20%;
+  }
+}
+
 .input_shrot {
   width: 10%;
   padding: 0.4em;

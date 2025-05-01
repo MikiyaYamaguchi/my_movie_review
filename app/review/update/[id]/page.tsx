@@ -167,7 +167,7 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                   <td>
                     <textarea
                       name="overview"
-                      id="overview"
+                      value={overview}
                       onChange={(e) => setOverview(e.target.value)}
                       className={update.input}
                       rows={10}
@@ -180,16 +180,19 @@ const Update = (context: { params: Promise<{ id: string }> }) => {
                   <th>星レビュー</th>
                   <td>
                     <span className={update.star}>★</span>
-                    <input
-                      type="number"
+                    <select
                       name="star"
-                      max="5"
-                      min="1"
                       value={star}
                       onChange={(e) => setStar(Number(e.target.value))}
-                      className={update.input_shrot}
+                      className={update.select}
                       required
-                    />
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>

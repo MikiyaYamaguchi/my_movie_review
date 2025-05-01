@@ -285,16 +285,18 @@ const Post = () => {
                 </th>
                 <td>
                   <span className={post.star}>★</span>
-                  <input
-                    type="number"
+                  <select
                     name="star"
-                    max="5"
-                    min="1"
-                    value={star}
                     onChange={(e) => setStar(Number(e.target.value))}
-                    className={post.input_shrot}
+                    className={post.select}
                     required
-                  />
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
                 </td>
               </tr>
               <tr>
